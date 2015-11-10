@@ -22,13 +22,13 @@ cut -f 1 -d "," salida.txt > id.txt
 cut -f 2 -d "," salida.txt > country.txt
 #cut the third column in a new file
 cut -f 3 -d "," salida.txt > year.txt
-#paste the columns, order by year and create an output file
-paste -d "," country.txt id.txt year.txt | sort > order_country.csv
-#paste the columns, order by country and create an output file
-paste -d "," year.txt id.txt country.txt | sort > order_year.csv
+#paste the columns, sort by year and create an output file
+paste -d "," country.txt id.txt year.txt | sort > sort_country.csv
+#paste the columns, sort by country and create an output file
+paste -d "," year.txt id.txt country.txt | sort > sort_year.csv
 # create header of files
-sed -l 1 -i  \1i'ISO,ID,YEAR' order_country.csv
-sed -l 1 -i  \1i'YEAR,ID,ISO' order_year.csv
+sed -l 1 -i  \1i'ISO,ID,YEAR' sort_country.csv
+sed -l 1 -i  \1i'YEAR,ID,ISO' sort_year.csv
 #remove unnecessary files
 rm salida.txt id.txt country.txt year.txt
 #philosophical phrase:
