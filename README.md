@@ -1,3 +1,3 @@
-## Repositorio del curso: Biología comparada I ##
+## Course repository: Biología comparada I ##
 
-1. **[order.sh](https://github.com/dpabon/bio_comparada/blob/master/order.sh): Order a fasta file using year and Country**
+1. **[sort.sh](https://github.com/dpabon/bio_comparada/blob/master/sort.sh):** Sort a fasta file using year and country.
