@@ -15,14 +15,14 @@
 
 #Please replace FILE_NAME with the route and file .fasta
 #the script search all lines that have ">". Change the simbol "_" with ";",remove ">" and create an ouput file
-grep ">" FILE_NAME | sed 's/_/,/g' | sed 's/>//g' > salida.txt
+grep ">" DNAdata.fas | sed 's/_/,/g' | sed 's/>//g' > salida.txt
 #sort by country and create an output file
 sort -k 2 -t "," salida.txt > sort_country.csv
 #sort by year and create an output file
 sort -k 3 -t "," salida.txt > sort_year.csv
 # create header of files
-sed -l 1 -i  \1i'ID,ISO,YEAR' sort_country.csv
-sed -l 1 -i  \1i'ID,ISO,YEAR' sort_year.csv
+sed -i  \1i'ID,ISO,YEAR' sort_country.csv
+sed -i  \1i'ID,ISO,YEAR' sort_year.csv
 #remove unnecessary files
 rm salida.txt
 #philosophical phrase:
