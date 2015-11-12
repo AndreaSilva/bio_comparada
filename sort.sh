@@ -15,7 +15,7 @@
 
 #Please replace FILE_NAME with the route and file .fasta
 #the script search all lines that have ">". Change the simbol "_" with ";",remove ">" and create an ouput file
-grep ">" DNAdata.fas | sed 's/_/,/g' | sed 's/>//g' > salida.txt
+grep ">" FILE_NAME | sed 's/_/,/g' | sed 's/>//g' > salida.txt
 #sort by country and create an output file
 sort -k 2 -t "," salida.txt > sort_country.csv
 #sort by year and create an output file
