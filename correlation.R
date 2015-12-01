@@ -1,4 +1,4 @@
-## Funciones de utilidad, Media, Desviación estandar, 
+## Funciones de utilidad, Media, Desviación estandar, varianza 
 #media
 media <- function(x){
   media = (sum(x)/length(x))
@@ -25,11 +25,8 @@ varia <- function(x){
 
 # Directorio de trabajo
 setwd('~/MEGAsync/bio_comparada/bio_comparada/')
+## TODO EN TERMINO DE DATOS
 datos <- read.csv("GenomeSize.csv")
-tail(datos)
-
-View(datos)
-
 
 ## Función para separar los datos discriminando por Suborden e indexandolos en una lista
 separate <-function(x){
@@ -40,22 +37,20 @@ separate <-function(x){
   }
   return(lista)
 }
-
-salida <- separate(datos)
-str(salida)
+datos = separate(datos)
 
 ## Remocion de NAs
-for( i in 1:length(salida)){
-  salida[[i]]<- na.omit(salida[[i]])
+for( i in 1:length(datos)){
+  datos[[i]]<- na.omit(datos[[i]])
 }
-summary(salida[[1]])
+summary(datos[[1]])
 
 
 ## Conviriento enteros a categorias
-for(y in 1:length(salida)){
-  for( i in 1:length(colnames(salida[[1]]))){
-    if(class(salida[[y]][,i]) == "integer"){
-      salida[[y]][,i] = as.factor(salida[[y]][,i])
+for(y in 1:length(datos)){
+  for( i in 1:length(colnames(datos[[y]]))){
+    if(class(datos[[y]][,i]) == "integer"){
+      datos[[y]][,i] = as.factor(datos[[y]][,i])
     }
   }
 }
