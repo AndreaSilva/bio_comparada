@@ -7,10 +7,11 @@ tail(datos)
 
 View(datos)
 
-lista = list()
 
+rm(lista)
 ## Función para separar los datos discriminando por Suborden e indexandolos en una lista
 separate <-function(x){
+  lista = list()
   agrup <- unique(x$Suborder)
   for( i in 1:length(agrup)){
     lista[[i]] <- subset.data.frame(datos, datos$Suborder==agrup[i])
@@ -20,15 +21,53 @@ separate <-function(x){
 
 salida <- separate(datos)
 str(salida)
-salida2 <- list()
+
 ## Remocion de NAs
 for( i in 1:length(salida)){
-  salida2[[i]]<- na.omit(salida[[i]])
+  salida[[i]]<- na.omit(salida[[i]])
 }
-salida2
-## Definición de clases
-entrada <-colnames(salida2[[1]]) 
-entrada
+summary(salida[[1]])
+
+## Definición de clases es posible eliminarla
+
+## Conviriento enteros a categorias
+for(y in 1:length(salida)){
+  for( i in 1:length(colnames(salida[[1]]))){
+    if(class(salida[[y]][,i]) == "integer"){
+      salida[[y]][,i] = as.factor(salida[[y]][,i])
+    }
+  }
+}
+## Funciones de utilidad, Media, Desviación estandar, 
+media <- function(x){
+  media = (sum(x)/length(x))
+  return(media)
+}
+
+des_est <- function(x){
+  sal <- numeric()
+  for(i in 1:length(x)){
+    sal[i] = (x[i]-((sum(x)/length(x))))^2
+  }
+  des_est = sqrt(sum(sal)/(length(x)-1))
+  return(des_est)
+}
+
+for(y in 1:length(salida2)){
+  for( i in 1:length(entrada)){
+    if(class(salida2[[y]][,i]) == class(salida2[[y]][1,i+1])){
+      print("son iguales")
+    }else{
+      print("son diferentes")
+    }
+  }
+}
+class(salida2[[y]][,i]) == "factor" & class(salida2[[y]][,i+1:length(entrada)])
+
+inherits()
+class(salida2[[1]][,16])
+is.integer(salida2[[1]][,15])
+
 for(y in 1:length(salida2)){
   for( i in 1:length(entrada)){
     print(class(salida2[[y]][1,i]))
@@ -39,6 +78,7 @@ for(y in 1:length(salida2)){
 }
 
 class(salida[[1]][5,1])
+class(salida[[1]][,2])
 salida[[1]][5,1]
 
 if(class(salida[[1]]$Suborder) != "factor" & class(salida[[1]]$Family)  == "factor"){
