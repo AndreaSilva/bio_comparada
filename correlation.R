@@ -1,5 +1,28 @@
-#Opciones de R
-options( prompt = "prt> ")
+## Funciones de utilidad, Media, Desviación estandar, 
+#media
+media <- function(x){
+  media = (sum(x)/length(x))
+  return(media)
+}
+# Desviacion estandar
+des_est <- function(x){
+  sal <- numeric()
+  for(i in 1:length(x)){
+    sal[i] = (x[i]-((sum(x)/length(x))))^2
+  }
+  des_est = sqrt(sum(sal)/(length(x)-1))
+  return(des_est)
+}
+# Varianza
+varia <- function(x){
+  sal <- numeric()
+  for(i in 1:length(x)){
+    sal[i] = (x[i]-((sum(x)/length(x))))^2
+  }
+  varia = (sum(sal)/(length(x)-1))
+  return(varia)
+}
+
 # Directorio de trabajo
 setwd('~/MEGAsync/bio_comparada/bio_comparada/')
 datos <- read.csv("GenomeSize.csv")
@@ -8,7 +31,6 @@ tail(datos)
 View(datos)
 
 
-rm(lista)
 ## Función para separar los datos discriminando por Suborden e indexandolos en una lista
 separate <-function(x){
   lista = list()
@@ -28,7 +50,6 @@ for( i in 1:length(salida)){
 }
 summary(salida[[1]])
 
-## Definición de clases es posible eliminarla
 
 ## Conviriento enteros a categorias
 for(y in 1:length(salida)){
@@ -38,21 +59,8 @@ for(y in 1:length(salida)){
     }
   }
 }
-## Funciones de utilidad, Media, Desviación estandar, 
-media <- function(x){
-  media = (sum(x)/length(x))
-  return(media)
-}
 
-des_est <- function(x){
-  sal <- numeric()
-  for(i in 1:length(x)){
-    sal[i] = (x[i]-((sum(x)/length(x))))^2
-  }
-  des_est = sqrt(sum(sal)/(length(x)-1))
-  return(des_est)
-}
-
+################################################
 for(y in 1:length(salida2)){
   for( i in 1:length(entrada)){
     if(class(salida2[[y]][,i]) == class(salida2[[y]][1,i+1])){
