@@ -23,8 +23,12 @@
 #Media
 # Sumatoria de los datos de la variable dividido por la longitud de la variable
 media <- function(x){
-  media = (sum(x) / length(x))
-  return(media)
+  if (class(x) == "numeric"){
+    media = (sum(x) / length(x))
+    return(media)
+  }else{
+    print("x is not numeric class")
+  }
 }
 # Desviacion estandar
 # 
