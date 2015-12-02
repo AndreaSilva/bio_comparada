@@ -61,36 +61,67 @@ varia <- function(x){
 
 # Covarianza1
 cova <- function(x, y){
-  vec = data.frame()
-  for(i in 1:length(y)){
-    for(c in 1:length(x)){
-      vec[c,i] = ((x[c] - (sum(x)/length(x)))) * ((y[c,i] - (sum(y[ ,i]) / length(y[ ,i]))))
+  if((class(x) == "numeric" & class(y) == "data.frame")){
+    vec = data.frame()
+    for(i in 1:length(y)){
+      for(c in 1:length(x)){
+        vec[c,i] = ((x[c] - (sum(x)/length(x)))) * ((y[c,i] - (sum(y[ ,i]) / length(y[ ,i]))))
       }
-  }
-  cova = numeric()
-  for(i in 1:length(vec)){
-    cova[i] = (sum(vec[ ,i]) / (length(vec[ ,i])-1))
-  }
-  names(cova) = colnames(y)
-  return(cova)
-  }
-
-  else{
+    }
+    cova = numeric()
+    for(i in 1:length(vec)){
+      cova[i] = (sum(vec[ ,i]) / (length(vec[ ,i])-1))
+    }
+    names(cova) = colnames(y)
+    return(cova) 
+  }else if((class(x) == "data.frame" & class(y) == "numeric")){
+    vec = data.frame()
+    for(i in 1:length(x)){
+      for(c in 1:length(y)){
+        vec[c,i] = ((y[c] - (sum(y)/length(y)))) * ((x[c,i] - (sum(x[ ,i]) / length(x[ ,i]))))
+      }
+    }
+    cova = numeric()
+    for(i in 1:length(vec)){
+      cova[i] = (sum(vec[ ,i]) / (length(vec[ ,i])-1))
+    }
+    names(cova) = colnames(x)
+    return(cova)
+  }else if ((class(x) == "numeric" & class(y) == "numeric")){
     vec = numeric()
     for(i in 1:length(x)){
       vec[i] = ((x[i] - (sum(x)/length(x)))) * ((y[i] - (sum(y) / length(y))))
     }
     cova = sum(vec) / (length(x)-1)
     return(cova)
-  }
+    }
+}
+#############
+
+
+
+  
+
+
+if(class(datos[[1]][ ,4]) == "numeric" | "data.frame" & class(datos[[1]][ ,7:9])== "data.frame"){
+  print("hola")
 }
 
 
+## Hechele logica al asunto
+class(datos[[1]][ ,4]) == "numeric" || class(datos[[1]][ ,4]) == "data.frame"
+class(datos[[1]][ ,4]) == "numeric" || "data.frame"
+class(datos[[1]][ ,4]) == "numeric" || "data.frame"
 
+if(((class(datos[[1]][ ,4]) == "numeric") & (class(datos[[1]][ ,7:9]) == "data.frame"))||
+   ((class(datos[[1]][ ,4]) == "data.frame") & (class(datos[[1]][ ,7:9]) == "data.frame" || "numeric"))||
+   ((class(datos[[1]][ ,4]) == "data.frame") & (class(datos[[1]][ ,7:9]) == "numeric"))){
+  print("todo bien")
+}
 
 dr <- cova(datos[[1]][ ,4], datos[[1]][ ,7:9])
-cova(datos[[1]][ ,4], datos[[1]][ ,7:9])
-cova
+cov(datos[[1]][ ,7], datos[[1]][ ,4])
+cova(datos[[1]][ ,7], datos[[1]][ ,4])
 colnames(datos[[1]][,4])
 x <- datos[[1]][ ,4]
 y <- datos[[1]][ ,7:9]
