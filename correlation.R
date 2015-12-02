@@ -59,17 +59,23 @@ varia <- function(x){
   }
 }
 
-# Covarianza
+# Covarianza1
 cova <- function(x, y){
-  if(class(y) == "data.frame"){
-    vec = data.frame()
-    for(i in 1:length(x)){
-      for(c in 1:length(y)){
-        vec[i,c] = ((x[i] - (sum(x)/length(x)))) * ((y[i,c] - (sum(y[ ,c]) / length(y[ ,c]))))
-        cova = sum(vec) / (length(x)-1)
-        }
-    }
-  }else{
+  vec = data.frame()
+  for(i in 1:length(y)){
+    for(c in 1:length(x)){
+      vec[c,i] = ((x[c] - (sum(x)/length(x)))) * ((y[c,i] - (sum(y[ ,i]) / length(y[ ,i]))))
+      }
+  }
+  cova = numeric()
+  for(i in 1:length(vec)){
+    cova[i] = (sum(vec[ ,i]) / (length(vec[ ,i])-1))
+  }
+  names(cova) = colnames(y)
+  return(cova)
+  }
+
+  else{
     vec = numeric()
     for(i in 1:length(x)){
       vec[i] = ((x[i] - (sum(x)/length(x)))) * ((y[i] - (sum(y) / length(y))))
@@ -77,11 +83,22 @@ cova <- function(x, y){
     cova = sum(vec) / (length(x)-1)
     return(cova)
   }
-   
 }
 
-cov(datos[[1]][ ,4], datos[[1]][ ,7:9])
+
+
+
+dr <- cova(datos[[1]][ ,4], datos[[1]][ ,7:9])
 cova(datos[[1]][ ,4], datos[[1]][ ,7:9])
+cova
+colnames(datos[[1]][,4])
+x <- datos[[1]][ ,4]
+y <- datos[[1]][ ,7:9]
+
+length(x)
+length(y[,3])
+cova(x,y)
+cov(x,y)
 class(datos[[1]][ ,7:9])
 length(datos[[1]][ ,7:9])
 # Directorio de trabajo
