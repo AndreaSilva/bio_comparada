@@ -33,34 +33,57 @@ media <- function(x){
 # Desviacion estandar
 # 
 des_est <- function(x){
-  sal = numeric()
-  for(i in 1:length(x)){
-    sal[i] = (x[i] - ((sum(x) / length(x))))^2
+  if (class(x) == "numeric"){
+    sal = numeric()
+    for(i in 1:length(x)){
+      sal[i] = (x[i] - ((sum(x) / length(x))))^2
+    }
+    des_est = sqrt(sum(sal) / (length(x)-1))
+    return(des_est)
+  }else{
+    print("x is not numeric class")
   }
-  des_est = sqrt(sum(sal) / (length(x)-1))
-  return(des_est)
 }
 
 # Varianza
 varia <- function(x){
-  sal <- numeric()
-  for(i in 1:length(x)){
-    sal[i] = (x[i] - ((sum(x) / length(x))))^2
+  if (is.numeric(x) == TRUE){
+    sal <- numeric()
+    for(i in 1:length(x)){
+      sal[i] = (x[i] - ((sum(x) / length(x))))^2
+    }
+    varia = (sum(sal) / (length(x)-1))
+    return(varia)
+  }else{
+    print ("x is not numeric class")
   }
-  varia = (sum(sal) / (length(x)-1))
-  return(varia)
 }
 
 # Covarianza
 cova <- function(x, y){
-  vec = numeric()
-  for(i in 1:length(x)){
-    vec[i] = ((x[i] - (sum(x)/length(x)))) * ((y[i] - (sum(y) / length(y))))
+  if(class(y) == "data.frame"){
+    vec = data.frame()
+    for(i in 1:length(x)){
+      for(c in 1:length(y)){
+        vec[i,c] = ((x[i] - (sum(x)/length(x)))) * ((y[i,c] - (sum(y[ ,c]) / length(y[ ,c]))))
+        cova = sum(vec) / (length(x)-1)
+        }
+    }
+  }else{
+    vec = numeric()
+    for(i in 1:length(x)){
+      vec[i] = ((x[i] - (sum(x)/length(x)))) * ((y[i] - (sum(y) / length(y))))
+    }
+    cova = sum(vec) / (length(x)-1)
+    return(cova)
   }
-  cova = sum(vec) / (length(x)-1)
-  return(cova)
+   
 }
 
+cov(datos[[1]][ ,4], datos[[1]][ ,7:9])
+cova(datos[[1]][ ,4], datos[[1]][ ,7:9])
+class(datos[[1]][ ,7:9])
+length(datos[[1]][ ,7:9])
 # Directorio de trabajo
 setwd('~/MEGAsync/bio_comparada/bio_comparada/')
 
@@ -93,6 +116,7 @@ for(y in 1:length(datos)){
     }
   }
 }
+
 
 ################################################
 for(y in 1:length(salida2)){
