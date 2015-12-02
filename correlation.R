@@ -1,49 +1,69 @@
-## Funciones de utilidad, Media, Desviación estandar, varianza 
-#media
+# Created by: Daniel Pabón
+# email: daniel.epm12@gmail.com
+
+#<one line to give the program's name and a brief idea of what it does.>
+#    Copyright (C) 2015  Daniel Pabón
+
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+
+#    You should have received a copy of the GNU General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+##########################################
+#  Definición de  funciones de utilidad  #
+##########################################
+#Media
+# Sumatoria de los datos de la variable dividido por la longitud de la variable
 media <- function(x){
-  media = (sum(x)/length(x))
+  media = (sum(x) / length(x))
   return(media)
 }
 # Desviacion estandar
+# 
 des_est <- function(x){
   sal = numeric()
   for(i in 1:length(x)){
-    sal[i] = (x[i]-((sum(x)/length(x))))^2
+    sal[i] = (x[i] - ((sum(x) / length(x))))^2
   }
-  des_est = sqrt(sum(sal)/(length(x)-1))
+  des_est = sqrt(sum(sal) / (length(x)-1))
   return(des_est)
 }
+
 # Varianza
 varia <- function(x){
   sal <- numeric()
   for(i in 1:length(x)){
-    sal[i] = (x[i]-((sum(x)/length(x))))^2
+    sal[i] = (x[i] - ((sum(x) / length(x))))^2
   }
-  varia = (sum(sal)/(length(x)-1))
+  varia = (sum(sal) / (length(x)-1))
   return(varia)
 }
 
-# CoVarianza
+# Covarianza
 cova <- function(x, y){
   vec = numeric()
   for(i in 1:length(x)){
-    vec[i] = ((x[i]-(sum(x)/length(x)))) * ((y[i]-(sum(y)/length(y))))
+    vec[i] = ((x[i] - (sum(x)/length(x)))) * ((y[i] - (sum(y) / length(y))))
   }
-  cova = sum(vec)/(length(x)-1)
+  cova = sum(vec) / (length(x)-1)
   return(cova)
 }
-cov(datos[[1]][,4], datos[[1]][,5])
-cova(datos[[1]][,4], datos[[1]][,5])
-View(datos[[1]])
-cov()
-?cov
-?cov2cor
+
 # Directorio de trabajo
 setwd('~/MEGAsync/bio_comparada/bio_comparada/')
+
 ## TODO EN TERMINO DE DATOS
 datos <- read.csv("GenomeSize.csv")
 
-## Función para separar los datos discriminando por Suborden e indexandolos en una lista
+## Función para separar los datos discriminando por Suborden e indexarlos en una lista
 separate <-function(x){
   lista = list()
   agrup <- unique(x$Suborder)
