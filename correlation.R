@@ -6,7 +6,7 @@ media <- function(x){
 }
 # Desviacion estandar
 des_est <- function(x){
-  sal <- numeric()
+  sal = numeric()
   for(i in 1:length(x)){
     sal[i] = (x[i]-((sum(x)/length(x))))^2
   }
@@ -23,6 +23,21 @@ varia <- function(x){
   return(varia)
 }
 
+# CoVarianza
+cova <- function(x, y){
+  vec = numeric()
+  for(i in 1:length(x)){
+    vec[i] = ((x[i]-(sum(x)/length(x)))) * ((y[i]-(sum(y)/length(y))))
+  }
+  cova = sum(vec)/(length(x)-1)
+  return(cova)
+}
+cov(datos[[1]][,4], datos[[1]][,5])
+cova(datos[[1]][,4], datos[[1]][,5])
+View(datos[[1]])
+cov()
+?cov
+?cov2cor
 # Directorio de trabajo
 setwd('~/MEGAsync/bio_comparada/bio_comparada/')
 ## TODO EN TERMINO DE DATOS
