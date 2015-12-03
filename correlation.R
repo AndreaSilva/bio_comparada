@@ -59,7 +59,7 @@ varia <- function(x){
   }
 }
 
-# Covarianza1
+# covarianza
 cova <- function(x, y){
   if((class(x) == "numeric" & class(y) == "data.frame")){
     vec = data.frame()
@@ -94,48 +94,17 @@ cova <- function(x, y){
     }
     cova = sum(vec) / (length(x)-1)
     return(cova)
-    }
-}
-#############
-
-
-
-  
-
-
-if(class(datos[[1]][ ,4]) == "numeric" | "data.frame" & class(datos[[1]][ ,7:9])== "data.frame"){
-  print("hola")
+  }
 }
 
+###############################################
+# Preparación de los datos para procesamiento #
+###############################################
 
-## Hechele logica al asunto
-class(datos[[1]][ ,4]) == "numeric" || class(datos[[1]][ ,4]) == "data.frame"
-class(datos[[1]][ ,4]) == "numeric" || "data.frame"
-class(datos[[1]][ ,4]) == "numeric" || "data.frame"
-
-if(((class(datos[[1]][ ,4]) == "numeric") & (class(datos[[1]][ ,7:9]) == "data.frame"))||
-   ((class(datos[[1]][ ,4]) == "data.frame") & (class(datos[[1]][ ,7:9]) == "data.frame" || "numeric"))||
-   ((class(datos[[1]][ ,4]) == "data.frame") & (class(datos[[1]][ ,7:9]) == "numeric"))){
-  print("todo bien")
-}
-
-dr <- cova(datos[[1]][ ,4], datos[[1]][ ,7:9])
-cov(datos[[1]][ ,7], datos[[1]][ ,4])
-cova(datos[[1]][ ,7], datos[[1]][ ,4])
-colnames(datos[[1]][,4])
-x <- datos[[1]][ ,4]
-y <- datos[[1]][ ,7:9]
-
-length(x)
-length(y[,3])
-cova(x,y)
-cov(x,y)
-class(datos[[1]][ ,7:9])
-length(datos[[1]][ ,7:9])
 # Directorio de trabajo
 setwd('~/MEGAsync/bio_comparada/bio_comparada/')
 
-## TODO EN TERMINO DE DATOS
+## Entrada
 datos <- read.csv("GenomeSize.csv")
 
 ## Función para separar los datos discriminando por Suborden e indexarlos en una lista
@@ -147,9 +116,10 @@ separate <-function(x){
   }
   return(lista)
 }
-datos = separate(datos)
+datos <- separate(datos)
 
-## Remocion de NAs
+## Remocion de NAs, no se puede calcular correlación con data frames que presenten NAs por lo cual
+## lo mas conveniente es remover las observaciones que presenten los mismos.
 for( i in 1:length(datos)){
   datos[[i]]<- na.omit(datos[[i]])
 }
@@ -157,14 +127,33 @@ summary(datos[[1]])
 
 
 ## Conviriento enteros a categorias
-for(y in 1:length(datos)){
-  for( i in 1:length(colnames(datos[[y]]))){
-    if(class(datos[[y]][,i]) == "integer"){
-      datos[[y]][,i] = as.factor(datos[[y]][,i])
+convertFactor <- function(x){
+  for(u in 1:length(x)){
+    for(i in 1:length(colnames(x[[u]]))){
+      if (class(x[[u]][ ,i]) == "integer"){
+        x[[u]][ ,i] =as.factor(datos[[u]][ ,i])
+      }
     }
   }
+  return(x)
 }
+datos <- convertFactor(datos)
 
+length(colnames(datos[[1]]))
+
+## Discriminar si las variables son categoricas, numericas y test a utilizar
+totalfunc <- function(x){
+  if (class(x) == "list"){
+    for(d in 1:length(x)){
+      for(c in 1:length(colnames(x[[d]]))){
+        
+      }
+    }
+    
+  }else{
+    print("x is not list")
+  }
+}
 
 ################################################
 for(y in 1:length(salida2)){
