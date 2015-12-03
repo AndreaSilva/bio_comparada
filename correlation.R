@@ -110,7 +110,7 @@ datos <- read.csv("GenomeSize.csv")
 ## Función para separar los datos discriminando por Suborden e indexarlos en una lista
 separate <-function(x){
   lista = list()
-  agrup <- unique(x$Suborder)
+  agrup <- levels(x$Suborder)
   for( i in 1:length(agrup)){
     lista[[i]] <- subset.data.frame(datos, datos$Suborder==agrup[i])
   }
@@ -143,10 +143,20 @@ length(colnames(datos[[1]]))
 
 ## Discriminar si las variables son categoricas, numericas y test a utilizar
 totalfunc <- function(x){
+  salida = data.frame()
   if (class(x) == "list"){
     for(d in 1:length(x)){
       for(c in 1:length(colnames(x[[d]]))){
-        
+        for(c2 in 2:length(colnames(x[[d]]))){
+          if (class(x[[d]][ ,c]) == "factor" & class(x[[d]][ ,c2] == "factor"){
+            tabla = data.frame()
+            # Crear una tabla de contingencia
+            tabla[]
+            # Test de chi-cuadrado variables independientes
+            # Crammer V 
+          }
+          
+        }
       }
     }
     
@@ -156,6 +166,8 @@ totalfunc <- function(x){
 }
 
 ################################################
+
+
 for(y in 1:length(salida2)){
   for( i in 1:length(entrada)){
     if(class(salida2[[y]][,i]) == class(salida2[[y]][1,i+1])){
