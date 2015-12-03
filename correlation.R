@@ -166,7 +166,14 @@ totalfunc <- function(x){
 }
 
 ################################################
+conting <- data.frame()
+for(i in levels(datos[[1]][,3])){
+  datos[[1]][,3] == i
+}
 
+
+
+################################################
 
 for(y in 1:length(salida2)){
   for( i in 1:length(entrada)){
