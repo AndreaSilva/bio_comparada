@@ -126,7 +126,7 @@ for( i in 1:length(datos)){
 summary(datos[[1]])
 
 
-## Conviriento enteros a categorias
+## Convirtiento enteros a categorias
 convertFactor <- function(x){
   for(u in 1:length(x)){
     for(i in 1:length(colnames(x[[u]]))){
@@ -171,8 +171,25 @@ for(i in levels(datos[[1]][,3])){
   datos[[1]][,3] == i
 }
 
+datos[[1]]
+which(datos[[1]][]=="factor")
+vector <- numeric()
+for(i in 1:length(colnames(datos[[1]]))){
+  if(class(datos[[1]][,i])=="factor"){
+    vector[i] <- colnames(datos[[1]])[i]
+    vector <- na.exclude(vector)
+  }
+}
+class(vector)
+with(datos[[1]], table(cut(vector)))
+
+## Test variables categoricas
+chisq.test(datos[[1]][,2], datos[[1]][,3])
+fisher.test(datos[[1]][,2], datos[[1]][,6])
 
 
+with(airquality, table(cut(Temp, quantile(Temp)), Month))
+airquality
 ################################################
 
 for(y in 1:length(salida2)){
