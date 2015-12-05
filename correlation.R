@@ -144,17 +144,15 @@ length(colnames(datos[[1]]))
 ## Discriminar si las variables son categoricas, numericas y test a utilizar
 totalfunc <- function(x){
   salida1 = list()
-  salida2 = data.frame()
   if (class(x) == "list"){
     for(d in 1:length(x)){
-      for(c in 1:length(colnames(x[[d]]))){
+      for(c in 1:(length(colnames(x[[d]])))-1){
         for(c2 in (c+1):length(colnames(x[[d]]))){
           if(class(x[[d]][ ,c]) == "numeric" & class(x[[d]][ ,c2]) == "numeric"){
             ## Correlación de pearson
-            salida1[[d]]=sort((cova(x[[d]][ ,c], x[[d]][ ,c2])/(des_est(x[[d]][ ,c]) * des_est(x[[d]][ ,c2]))), index.return=TRUE)
-            print( cova(x[[d]][ ,c], x[[d]][ ,c2])/(des_est(x[[d]][ ,c]) * des_est(x[[d]][ ,c2])))
-            #colnames(salida[ ,c]) = colnames(x[[d]][c])
-            #rownames(salida[c2,]) = colnames(x[[d]][c2])
+            print( cova(x[[d]][ ,c], x[[d]][ ,c2])/(des_est(x[[d]][ ,c]) * des_est(x[[d]][ ,c2])) )
+          }else{
+            print ("No son numericos")
           }
         }
       }
@@ -162,6 +160,7 @@ totalfunc <- function(x){
   }else{
     print("x is not list")
   }
+  return(salida1)
 }
 
 totalfunc(datos)
