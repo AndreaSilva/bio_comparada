@@ -143,28 +143,30 @@ length(colnames(datos[[1]]))
 
 ## Discriminar si las variables son categoricas, numericas y test a utilizar
 totalfunc <- function(x){
-  salida = data.frame()
+  salida1 = list()
+  salida2 = data.frame()
   if (class(x) == "list"){
     for(d in 1:length(x)){
       for(c in 1:length(colnames(x[[d]]))){
-        for(c2 in 2:length(colnames(x[[d]]))){
-          if (class(x[[d]][ ,c]) == "factor" & class(x[[d]][ ,c2] == "factor"){
-            tabla = data.frame()
-            # Crear una tabla de contingencia
-            tabla[]
-            # Test de chi-cuadrado variables independientes
-            # Crammer V 
+        for(c2 in (c+1):length(colnames(x[[d]]))){
+          if(class(x[[d]][ ,c]) == "numeric" & class(x[[d]][ ,c2]) == "numeric"){
+            ## Correlación de pearson
+            salida1[[d]]=sort((cova(x[[d]][ ,c], x[[d]][ ,c2])/(des_est(x[[d]][ ,c]) * des_est(x[[d]][ ,c2]))), index.return=TRUE)
+            print( cova(x[[d]][ ,c], x[[d]][ ,c2])/(des_est(x[[d]][ ,c]) * des_est(x[[d]][ ,c2])))
+            #colnames(salida[ ,c]) = colnames(x[[d]][c])
+            #rownames(salida[c2,]) = colnames(x[[d]][c2])
           }
-          
         }
       }
     }
-    
   }else{
     print("x is not list")
   }
 }
 
+totalfunc(datos)
+
+totalfunc
 ################################################
 conting <- data.frame()
 for(i in levels(datos[[1]][,3])){
@@ -172,6 +174,7 @@ for(i in levels(datos[[1]][,3])){
 }
 
 datos[[1]]
+class(datos[[1]][,4])
 which(datos[[1]][]=="factor")
 vector <- numeric()
 for(i in 1:length(colnames(datos[[1]]))){
