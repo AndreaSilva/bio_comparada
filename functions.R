@@ -83,3 +83,27 @@ cova <- function(x, y){
     return(cova)
   }
 }
+
+
+## Función para separar los datos discriminando por Suborden e indexarlos en una lista
+separate <-function(x){
+  lista = list()
+  agrup <- levels(x$Suborder)
+  for( i in 1:length(agrup)){
+    lista[[i]] <- subset.data.frame(datos, datos$Suborder==agrup[i])
+  }
+  return(lista)
+}
+
+## Función para convertir variables con numeros enteros ha variables categoricas
+
+convertFactor <- function(x){
+  for(u in 1:length(x)){
+    for(i in 1:length(colnames(x[[u]]))){
+      if (class(x[[u]][ ,i]) == "integer"){
+        x[[u]][ ,i] =as.factor(datos[[u]][ ,i])
+      }
+    }
+  }
+  return(x)
+}
