@@ -2,7 +2,8 @@
 # email: daniel.epm12@gmail.com
 
 #             COrRE2016
-# This program read a csv file that have n variables and begging with varibles: Suborder, Family and Specie. Agroup the data using 'suborder' and make a pearson correlation betwen the other variables.
+# This program read a csv file that have n variables and begging with varibles: 
+#Suborder, Family and Specie. Agroup the data using 'suborder' and make a pearson correlation betwen the other variables.
 #    Copyright (C) 2015  Daniel Pabón
 
 #    This program is free software: you can redistribute it and/or modify
@@ -53,7 +54,6 @@ length(colnames(datos[[1]]))
 
 ## Discriminar si las variables son categoricas, numericas y test a utilizar
 totalfunc <- function(x){
-  salida1 = list()
   if (class(x) == "list"){
     for(d in 1:length(x)){
       for(c in 1:(length(colnames(x[[d]])))-1){
@@ -61,10 +61,8 @@ totalfunc <- function(x){
           if(class(x[[d]][ ,c]) == "numeric" & class(x[[d]][ ,c2]) == "numeric"){
             ## Correlación de pearson
             nombres <- colnames(x[[d]])
-            cat(as.character(x[[d]][1,2]), nombres[c], nombres[c2], (cova(x[[d]][ ,c], x[[d]][ ,c2])/(des_est(x[[d]][ ,c]) * des_est(x[[d]][ ,c2]))), "\n", sep = c(" = ", " + ", " ==> ", "")) 
+            cat(as.character(x[[d]][1,2]), nombres[c], nombres[c2], (cova(x[[d]][ ,c], x[[d]][ ,c2])/(des_est(x[[d]][ ,c]) * des_est(x[[d]][ ,c2]))), "\n", sep = c(" , ", " , ", " , ", "")) 
             #print( (cova(x[[d]][ ,c], x[[d]][ ,c2])/(des_est(x[[d]][ ,c]) * des_est(x[[d]][ ,c2]))) )
-          }else{
-            print ("No son numericos")
           }
         }
       }
@@ -72,12 +70,9 @@ totalfunc <- function(x){
   }else{
     print("x is not list")
   }
-  return(salida1)
 }
 
-datos[[1]][3,1]
-totalfunc(datos)
-
+salida <- capture.output(totalfunc(datos), file = "salida.csv")
 ################################################
 conting <- data.frame()
 for(i in levels(datos[[1]][,3])){
