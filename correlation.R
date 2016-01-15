@@ -102,7 +102,7 @@ cova <- function(x, y){
 ###############################################
 
 # Directorio de trabajo
-setwd('~/MEGAsync/bio_comparada/bio_comparada/')
+setwd('~/MEGAsync/bio_comparada/')
 
 ## Entrada
 datos <- read.csv("GenomeSize.csv")
