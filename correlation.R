@@ -1,7 +1,8 @@
 # Created by: Daniel Pabón
 # email: daniel.epm12@gmail.com
 
-#<one line to give the program's name and a brief idea of what it does.>
+#             COrRE2016
+# This program read a csv file that have n variables and begging with varibles: Suborder, Family and Specie. Agroup the data using 'suborder' and make a pearson correlation betwen the other variables.
 #    Copyright (C) 2015  Daniel Pabón
 
 #    This program is free software: you can redistribute it and/or modify
@@ -34,15 +35,8 @@ setwd('~/MEGAsync/bio_comparada/')
 datos <- read.csv("GenomeSize.csv")
 
 ## Función para separar los datos discriminando por Suborden e indexarlos en una lista
-separate <-function(x){
-  lista = list()
-  agrup <- levels(x$Suborder)
-  for( i in 1:length(agrup)){
-    lista[[i]] <- subset.data.frame(datos, datos$Suborder==agrup[i])
-  }
-  return(lista)
-}
 datos <- separate(datos)
+
 
 ## Remocion de NAs, no se puede calcular correlación con data frames que presenten NAs por lo cual
 ## lo mas conveniente es remover las observaciones que presenten los mismos.
@@ -53,16 +47,6 @@ summary(datos[[1]])
 
 
 ## Convirtiento enteros a categorias
-convertFactor <- function(x){
-  for(u in 1:length(x)){
-    for(i in 1:length(colnames(x[[u]]))){
-      if (class(x[[u]][ ,i]) == "integer"){
-        x[[u]][ ,i] =as.factor(datos[[u]][ ,i])
-      }
-    }
-  }
-  return(x)
-}
 datos <- convertFactor(datos)
 
 length(colnames(datos[[1]]))
@@ -76,6 +60,7 @@ totalfunc <- function(x){
         for(c2 in (c+1):length(colnames(x[[d]]))){
           if(class(x[[d]][ ,c]) == "numeric" & class(x[[d]][ ,c2]) == "numeric"){
             ## Correlación de pearson
+            
             print( cova(x[[d]][ ,c], x[[d]][ ,c2])/(des_est(x[[d]][ ,c]) * des_est(x[[d]][ ,c2])) )
           }else{
             print ("No son numericos")
