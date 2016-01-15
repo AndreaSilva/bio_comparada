@@ -60,8 +60,9 @@ totalfunc <- function(x){
         for(c2 in (c+1):length(colnames(x[[d]]))){
           if(class(x[[d]][ ,c]) == "numeric" & class(x[[d]][ ,c2]) == "numeric"){
             ## Correlación de pearson
-            
-            print( cova(x[[d]][ ,c], x[[d]][ ,c2])/(des_est(x[[d]][ ,c]) * des_est(x[[d]][ ,c2])) )
+            nombres <- colnames(x[[d]])
+            cat(as.character(x[[d]][1,2]), nombres[c], nombres[c2], (cova(x[[d]][ ,c], x[[d]][ ,c2])/(des_est(x[[d]][ ,c]) * des_est(x[[d]][ ,c2]))), "\n", sep = c(" = ", " + ", " ==> ", "")) 
+            #print( (cova(x[[d]][ ,c], x[[d]][ ,c2])/(des_est(x[[d]][ ,c]) * des_est(x[[d]][ ,c2]))) )
           }else{
             print ("No son numericos")
           }
@@ -74,9 +75,9 @@ totalfunc <- function(x){
   return(salida1)
 }
 
+datos[[1]][3,1]
 totalfunc(datos)
 
-totalfunc
 ################################################
 conting <- data.frame()
 for(i in levels(datos[[1]][,3])){
