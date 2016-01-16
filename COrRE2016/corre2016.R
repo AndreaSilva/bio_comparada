@@ -20,17 +20,19 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-###############################################
-# Llamando las funciones necesarias           #
-###############################################
-source('functions.R')
 
 ###############################################
 # Preparación de los datos para procesamiento #
 ###############################################
 
 # Directorio de trabajo
-setwd('~/MEGAsync/bio_comparada/')
+setwd('~/MEGAsync/bio_comparada/COrRE2016/')
+
+###############################################
+# Llamando las funciones necesarias           #
+###############################################
+source('functions.R')
+
 
 ## Entrada
 datos <- read.csv("GenomeSize.csv")
@@ -79,72 +81,4 @@ exit <- function(x, print=TRUE, file="exit.csv"){
   }
 }
 
-exit(datos)
-
-
-################################################
-conting <- data.frame()
-for(i in levels(datos[[1]][,3])){
-  datos[[1]][,3] == i
-}
-
-datos[[1]]
-class(datos[[1]][,4])
-which(datos[[1]][]=="factor")
-vector <- numeric()
-for(i in 1:length(colnames(datos[[1]]))){
-  if(class(datos[[1]][,i])=="factor"){
-    vector[i] <- colnames(datos[[1]])[i]
-    vector <- na.exclude(vector)
-  }
-}
-class(vector)
-with(datos[[1]], table(cut(vector)))
-
-## Test variables categoricas
-chisq.test(datos[[1]][,2], datos[[1]][,3])
-fisher.test(datos[[1]][,2], datos[[1]][,6])
-
-
-with(airquality, table(cut(Temp, quantile(Temp)), Month))
-airquality
-################################################
-
-for(y in 1:length(salida2)){
-  for( i in 1:length(entrada)){
-    if(class(salida2[[y]][,i]) == class(salida2[[y]][1,i+1])){
-      print("son iguales")
-    }else{
-      print("son diferentes")
-    }
-  }
-}
-class(salida2[[y]][,i]) == "factor" & class(salida2[[y]][,i+1:length(entrada)])
-
-inherits()
-class(salida2[[1]][,16])
-is.integer(salida2[[1]][,15])
-
-for(y in 1:length(salida2)){
-  for( i in 1:length(entrada)){
-    print(class(salida2[[y]][1,i]))
-    #if(salida2[[y]]$i =="TRUE"){
-      #print("todo bien")
-    #}
-  }
-}
-
-class(salida[[1]][5,1])
-class(salida[[1]][,2])
-salida[[1]][5,1]
-
-if(class(salida[[1]]$Suborder) != "factor" & class(salida[[1]]$Family)  == "factor"){
-  print("todo bien")
-}else{
-  print("Todo mal")
-}
-
-if(class(salida[[1]]$Suborder) == "factor"){
-  print("todo bien")
-} ## Numerico o factor
-check.options()
+exit(datos, print = F)
