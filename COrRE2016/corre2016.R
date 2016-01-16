@@ -1,9 +1,10 @@
 # Created by: Daniel Pabón
-# email: daniel.epm12@gmail.com
+# email: dpabon@openmailbox.org
 
 #             COrRE2016
-# This program read a csv file that have n variables and begging with varibles: 
-#Suborder, Family and Specie. Agroup the data using 'suborder' and make a pearson correlation betwen the other variables.
+# This program read a csv file that have n variables and begging with 
+# varibles: Suborder, Family and Specie. Agroup the data using 'suborder'
+# and make a pearson correlation betwen the other variables.
 #    Copyright (C) 2015  Daniel Pabón
 
 #    This program is free software: you can redistribute it and/or modify
@@ -24,34 +25,49 @@
 # Preparación de los datos para procesamiento #
 ###############################################
 
-# Directorio de trabajo
-setwd('~/MEGAsync/bio_comparada/COrRE2016/')
+## Directorio de trabajo, por favor modifiquelo a la ubicación 
+## donde se encuentra este archivo
+setwd('')
 
 ###############################################
 # Llamando las funciones necesarias           #
 ###############################################
+
 source('functions.R')
 
+###########################################################
 
-## Entrada
+## Entrada.
+
 datos <- read.csv("GenomeSize.csv")
 
-## Función para separar los datos discriminando por Suborden e indexarlos en una lista
+## Función para separar los datos discriminando por Suborden e 
+## indexarlos en una lista.
+
 datos <- separate(datos)
 
 
-## Remocion de NAs, no se puede calcular correlación con data frames que presenten NAs por lo cual
-## lo mas conveniente es remover las observaciones que presenten los mismos.
+## Remocion de NAs, no se puede calcular correlación con data frames 
+## que presenten NAs por lo cual lo mas conveniente es remover las 
+## observaciones que presenten los mismos.
+
 for( i in 1:length(datos)){
   datos[[i]]<- na.omit(datos[[i]])
 }
 
-## Convirtiento enteros a categorias. Ver codigo de la función en el archivo functions
+## Convirtiento enteros a categorias. Ver codigo de la función en el 
+## archivo functions
+
 datos <- convertFactor(datos)
 
-## La función 'discri' discriminar si las variables son categoricas, numericas y aplica la correlación de pearson a las variables. El codigo puede verse en el archivo functions.
+## La función 'discri' discriminar si las variables son categoricas, 
+## numericas y aplica la correlación de pearson a las variables. 
+## El codigo puede verse en el archivo functions.
 
-## La función exit crea la salida, o impresion de los datos, si print = TRUE, la salida es impresa en pantalla, si print = FALSE los datos son guardados en un archivo formato csv. Por defecto el nombre del archivo es exit.csv, pero puede ser modificado utilizando el argumento 'file'
-
+## La función exit crea la salida, o impresion de los datos, 
+## si print = TRUE, la salida es impresa en pantalla, si print = FALSE 
+## los datos son guardados en un archivo formato csv. Por defecto el 
+## nombre del archivo es exit.csv, pero puede ser modificado utilizando 
+## el argumento 'file'
 
 exit(datos)
