@@ -71,7 +71,7 @@ discri <- function(x){
   }
 }
 
-## Creando la salida, o impresion de los datos
+## Creando la salida, o impresion de los datos, si print = TRUE, la salida es impresa en pantalla, si print = FALSE los datos son guardados en un archivo formato csv. Por defecto el nombre del archivo es exit.csv, pero puede ser modificado utilizando el argumento 'file'
 
 exit <- function(x, print=TRUE, file="exit.csv"){
   if(print){
