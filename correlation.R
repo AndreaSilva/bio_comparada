@@ -50,10 +50,8 @@ summary(datos[[1]])
 ## Convirtiento enteros a categorias
 datos <- convertFactor(datos)
 
-length(colnames(datos[[1]]))
-
 ## Discriminar si las variables son categoricas, numericas y test a utilizar
-totalfunc <- function(x){
+discri <- function(x){
   if (class(x) == "list"){
     for(d in 1:length(x)){
       for(c in 1:(length(colnames(x[[d]])))-1){
@@ -62,7 +60,6 @@ totalfunc <- function(x){
             ## Correlación de pearson
             nombres <- colnames(x[[d]])
             cat(as.character(x[[d]][1,2]), nombres[c], nombres[c2], (cova(x[[d]][ ,c], x[[d]][ ,c2])/(des_est(x[[d]][ ,c]) * des_est(x[[d]][ ,c2]))), "\n", sep = c(" , ", " , ", " , ", "")) 
-            #print( (cova(x[[d]][ ,c], x[[d]][ ,c2])/(des_est(x[[d]][ ,c]) * des_est(x[[d]][ ,c2]))) )
           }
         }
       }
@@ -71,6 +68,18 @@ totalfunc <- function(x){
     print("x is not list")
   }
 }
+
+## Creando la salida, o impresion de los datos
+
+exit <- function(x, print=TRUE, file="exit.csv"){
+  if(print){
+    discri(x)
+  }else{
+    capture.output(discri(x), file = file)
+  }
+}
+
+exit(datos)
 
 salida <- capture.output(totalfunc(datos), file = "salida.csv")
 ################################################
