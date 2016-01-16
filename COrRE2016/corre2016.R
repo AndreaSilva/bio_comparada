@@ -4,7 +4,7 @@
 #             COrRE2016
 # This program read a csv file that have n variables and begging with 
 # varibles: Suborder, Family and Specie. Agroup the data using 'suborder'
-# and make a pearson correlation betwen the other variables.
+# and calculate a pearson correlation betwen the other variables.
 #    Copyright (C) 2015  Daniel Pabón
 
 #    This program is free software: you can redistribute it and/or modify
