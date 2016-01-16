@@ -8,6 +8,4 @@ Para que el programa funcione correctamente descargue todos los archivos de la c
 Luego en el archivo *corre2016* modifique el directorio de trabajo.
 
 ## Ejemplo de salida ##
-![Ejemplo de salida 1](exit.png)
-
 ![Ejemplo de salida 2](exit1.png)
