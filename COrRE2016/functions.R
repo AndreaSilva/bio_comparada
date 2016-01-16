@@ -1,3 +1,26 @@
+# Created by: Daniel Pabón
+# email: daniel.epm12@gmail.com
+
+#             COrRE2016
+# This program read a csv file that have n variables and begging with varibles: 
+#Suborder, Family and Specie. Agroup the data using 'suborder' and make a pearson correlation betwen the other variables.
+#    Copyright (C) 2015  Daniel Pabón
+
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+
+#    You should have received a copy of the GNU General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+
+
 ##########################################
 #  Definición de  funciones de utilidad  #
 ##########################################
