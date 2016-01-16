@@ -21,6 +21,7 @@
 
 
 
+
 ###############################################
 # Preparación de los datos para procesamiento #
 ###############################################
@@ -46,17 +47,13 @@ datos <- separate(datos)
 for( i in 1:length(datos)){
   datos[[i]]<- na.omit(datos[[i]])
 }
-summary(datos[[1]])
 
-
-## Convirtiento enteros a categorias
+## Convirtiento enteros a categorias. Ver codigo de la función en el archivo functions
 datos <- convertFactor(datos)
 
-## Discriminar si las variables son categoricas, numericas y test a utilizar
+## La función 'discri' discriminar si las variables son categoricas, numericas y aplica la correlación de pearson a las variables. El codigo puede verse en el archivo functions.
 
-#Ver archivo functions
-
-## Creando la salida, o impresion de los datos, si print = TRUE, la salida es impresa en pantalla, si print = FALSE los datos son guardados en un archivo formato csv. Por defecto el nombre del archivo es exit.csv, pero puede ser modificado utilizando el argumento 'file'
+## La función exit crea la salida, o impresion de los datos, si print = TRUE, la salida es impresa en pantalla, si print = FALSE los datos son guardados en un archivo formato csv. Por defecto el nombre del archivo es exit.csv, pero puede ser modificado utilizando el argumento 'file'
 
 exit <- function(x, print=TRUE, file="exit.csv"){
   if(print){
