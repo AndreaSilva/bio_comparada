@@ -107,3 +107,22 @@ convertFactor <- function(x){
   }
   return(x)
 }
+
+## Discriminar si las variables son categoricas, numericas y test a utilizar
+discri <- function(x){
+  if (class(x) == "list"){
+    for(d in 1:length(x)){
+      for(c in 1:(length(colnames(x[[d]])))-1){
+        for(c2 in (c+1):length(colnames(x[[d]]))){
+          if(class(x[[d]][ ,c]) == "numeric" & class(x[[d]][ ,c2]) == "numeric"){
+            ## Correlación de pearson
+            nombres <- colnames(x[[d]])
+            cat(as.character(x[[d]][1,2]), nombres[c], nombres[c2], (cova(x[[d]][ ,c], x[[d]][ ,c2])/(des_est(x[[d]][ ,c]) * des_est(x[[d]][ ,c2]))), "\n", sep = c(" , ", " , ", " , ", "")) 
+          }
+        }
+      }
+    }
+  }else{
+    print("x is not list")
+  }
+}
