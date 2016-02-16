@@ -48,3 +48,30 @@ gen.felsen.tree <- function(p=0.8,q=0.3, file= "felsenstein.tree"){
   }
 }
 
+
+##  t1         
+##   \        t3
+##  p \      / 
+##     \_  _/ q
+##     /  q \ q
+##  p /      \
+##   /       t4
+##  t2
+## generate newick tree with the farris zone unrooted
+gen.felsen.tree <- function(p=0.8,q=0.3, file= "farris.tree"){
+  if(p== 0 || q==0){
+    print("no es posible realizar el arbol")
+  }
+  if( q != is.null(NA)){
+    p1 <- (-q^2 + (q^4 +4*q*(1-q))^(1/2))/(2*(1-q))
+    if(p >= p1){
+      print("Este arbol posee una zona de farris")
+      print(cat("((t1:",p,",t2:",p,"):",q,",t3:",q,",t4:",q,")", sep = ""))
+      cat("((t1:",p,",t2:",p,"):",q,",t3:",q,",t4:",q,");", sep = "", file = file)
+    }else{
+      print("Este arbol no posee una zona de felsenstein")
+      print("Modifique los valores de p y q")
+    }
+  }
+}
+
