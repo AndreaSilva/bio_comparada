@@ -2,34 +2,20 @@
 ## automatización de la creacion de datos a partir de arboles
 raiz='/home/eee/MEGAsync/bio_comparada/consistencia/'
 Rscript $raiz'bin/R/gentree.R'
-cd $raiz'data/raw/felsenstein'
 ## Modifique por las longitudes de caracteres a analizar
 size=(100 1000 10000)
 ## Modifique por el numero de replicas en la simulacion de caracteres
 replicas=$(seq 25)
-## Felsenstein
-for i in ${size[*]};
+## Cargando directorios
+directorio=($raiz'data/raw/felsenstein' $raiz'data/raw/lb' $raiz'data/raw/sb')
+## Creando datos
+for dic in ${directorio[*]};
 do
-  for replica in $replicas;
+  cd $dic
+  for i in ${size[*]};
   do
-    seq-gen -mGTR -l$i -or felsenstein.tree > 'dna'$i'_'$replica'.phy'
+    for replica in $replicas;
+    do
+      seq-gen -mGTR -l$i -or tree.tree > 'dna'$i'_'$replica'.phy'
+    done
   done
-done
-# LB
-cd $raiz'data/raw/lb'
-for i in ${size[*]};
-do
-  for replica in $replicas;
-  do
-    seq-gen -mGTR -l$i -or lb.tree > 'dna'$i'_'$replica'.phy'
-  done
-done
-#SB
-cd $raiz'data/raw/sb'
-for i in ${size[*]};
-do
-  for replica in $replicas;
-  do
-    seq-gen -mGTR -l$i -or sb.tree > 'dna'$i'_'$replica'.phy'
-  done
-done
