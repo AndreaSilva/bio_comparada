@@ -58,7 +58,7 @@ gen.felsen.tree <- function(p=0.8,q=0.3, file= "felsenstein.tree"){
 ##   /       t4
 ##  t2
 ## generate newick tree with the farris zone unrooted
-gen.felsen.tree <- function(p=0.8,q=0.3, file= "farris.tree"){
+gen.farris.tree <- function(p=0.8,q=0.3, file= "farris.tree"){
   if(p== 0 || q==0){
     print("no es posible realizar el arbol")
   }
