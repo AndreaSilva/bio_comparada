@@ -9,17 +9,17 @@ replicas=$(seq 25)
 ## Modifique el modelo a utilizar
 model='GTR'
 ## Cargando directorios
-directorio=($raiz'data/raw/felsenstein' $raiz'data/raw/lb' $raiz'data/raw/sb' $raiz'data/raw/farris')
-## Creando datos
-for dic in ${directorio[*]};
+directorio_raw=($raiz'data/raw/felsenstein/' $raiz'data/raw/lb/' $raiz'data/raw/sb/' $raiz'data/raw/farris/')
+## Creando datos y convirtiendo a fasta
+for dic in ${directorio_raw[*]};
 do
-  echo $dic
   cd $dic
   for i in ${size[*]};
   do
     for replica in $replicas;
     do
-      seq-gen -m$model -l$i -or tree.tree > 'dna'$i'_'$replica'.phy'
+      seq-gen -m$model -l$i tree.tree > 'dna'$i'_'$replica'.phy'
+      readseq -V -all -f='fasta' -o='fasta/dna'$i'_'$replica'.fas' 'dna'$i'_'$replica'.phy'
     done
   done
 done
