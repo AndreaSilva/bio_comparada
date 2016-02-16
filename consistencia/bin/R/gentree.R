@@ -13,3 +13,6 @@ setwd('~/MEGAsync/bio_comparada/consistencia/data/raw/sb/')
 p <- 0.2
 q <- 0.2
 cat("((t1:",p,",t2:",q,"):",q,",t3:",p,",t4:",q,");", sep = "", file ="tree.tree")
+# farris
+setwd('~/MEGAsync/bio_comparada/consistencia/data/raw/farris/')
+gen.farris.tree(file = "tree.tree")
