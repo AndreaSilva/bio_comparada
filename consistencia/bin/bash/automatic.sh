@@ -20,6 +20,7 @@ do
     do
       seq-gen -m$model -l$i tree.tree > 'dna'$i'_'$replica'.phy'
       readseq -V -all -f='fasta' -o='fasta/dna'$i'_'$replica'.fas' 'dna'$i'_'$replica'.phy'
+      muscle -in 'fasta/dna'$i'_'$replica'.fas'  -out 'aln/dna'$i'_'$replica'.aln'
     done
   done
 done
