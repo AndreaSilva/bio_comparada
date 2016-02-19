@@ -8,6 +8,8 @@ size=(100 1000 10000)
 replicas=$(seq 25)
 ## Modifique el modelo a utilizar
 model='GTR'
+## Parametros alineamiento muscle
+
 ## Cargando directorios
 directorio_raw=($raiz'data/raw/felsenstein/' $raiz'data/raw/lb/' $raiz'data/raw/sb/' $raiz'data/raw/farris/')
 ## Creando datos y convirtiendo a fasta
@@ -20,7 +22,6 @@ do
     do
       seq-gen -m$model -l$i tree.tree > 'dna'$i'_'$replica'.phy'
       readseq -V -all -f='fasta' -o='fasta/dna'$i'_'$replica'.fas' 'dna'$i'_'$replica'.phy'
-      muscle -in 'fasta/dna'$i'_'$replica'.fas'  -out 'aln/dna'$i'_'$replica'.aln'
     done
   done
 done
