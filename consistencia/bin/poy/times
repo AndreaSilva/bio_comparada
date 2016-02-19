@@ -1,0 +1,2 @@
+cd("/home/MEGAsync/bio_comparada/consistencia/data/raw/farris/")
+read("dna100_1.phy")
