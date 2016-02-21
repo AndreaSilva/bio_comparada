@@ -1,0 +1,6 @@
+cd("/home/eee/MEGAsync/bio_comparada/consistencia/data/raw/farris/fasta/")
+read("dna10000_1.fas")
+build()
+swap()
+select()
+exit()
