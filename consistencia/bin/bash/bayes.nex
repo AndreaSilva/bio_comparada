@@ -1,0 +1,7 @@
+begin mrbayes;
+    lset nst=6 rates=invgamma;
+    mcmcp ngen= 15000000 relburnin=yes burninfrac=0.25 printfreq=100 samplefreq=100 nchains=2 savebrlens=yes checkpoint=yes;
+    mcmc;
+    sump;
+    sumt;
+end;
