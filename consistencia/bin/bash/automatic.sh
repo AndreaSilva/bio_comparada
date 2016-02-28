@@ -8,8 +8,8 @@ size=(100 1000 10000)
 replicas=$(seq 25)
 ## Modifique el modelo a utilizar
 model='GTR'
-## Parametros alineamiento muscle
-
+## Semilla para la generación de secuencias
+seed=228734582635879237485927358962874223452345
 ## Cargando directorios
 directorio_raw=($raiz'data/raw/felsenstein/' $raiz'data/raw/lb/' $raiz'data/raw/sb/' $raiz'data/raw/farris/')
 ## Creando datos y convirtiendo a fasta
@@ -20,8 +20,10 @@ do
   do
     for replica in $replicas;
     do
-      seq-gen -m$model -l$i tree.tree > 'dna'$i'_'$replica'.phy'
+      seq-gen -z=$seed -m$model -l$i tree.tree > 'dna'$i'_'$replica'.phy'
       readseq -V -all -f='fasta' -o='fasta/dna'$i'_'$replica'.fas' 'dna'$i'_'$replica'.phy'
+      readseq -V -all -f='NEXUS' -o='bayes_input/dna'$i'_'$replica'.nex' 'dna'$i'_'$replica'.phy'
+      cat -i 'bayes_input/dna'$i'_'$replica'.nex' $raiz'bin/bash/bayes.nex'
     done
   done
 done
