@@ -1,7 +1,6 @@
 #!/bin/bash
 ## creación de directorios de datos necesarios para correr los archivos
 cd ../..
-raiz=$pwd
 mkdir data
 cd data
 mkdir raw processed
