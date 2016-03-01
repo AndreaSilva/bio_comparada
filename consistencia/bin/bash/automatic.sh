@@ -63,7 +63,7 @@ do
         seq-gen -z$((${semilla[3]}+$i+$replica)) -m$model -l$i tree.tree > 'dna'$i'_'$replica'.phy'
         readseq -V -all -f='fasta' -o='fasta/dna'$i'_'$replica'.fas' 'dna'$i'_'$replica'.phy'
         readseq -V -all -f='NEXUS' -o='bayes_input/dna'$i'_'$replica'.nex' 'dna'$i'_'$replica'.phy'
-        cat 'bayes_input/dna'$i'_'$replica'.nex' $raiz'bin/bash/bayes.nex' >> 'bayes_input/dna'$i'_'$replica'.nex'
+        cat -u 'bayes_input/dna'$i'_'$replica'.nex' $raiz'bin/bash/bayes.nex' >>'bayes_input/dna'$i'_'$replica'.nex'
       done
     done
   fi
