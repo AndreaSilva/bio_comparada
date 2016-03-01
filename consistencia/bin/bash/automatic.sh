@@ -3,7 +3,7 @@
 cd ../..
 raiz=$( pwd )
 echo 'Su directorio raiz es:' $raiz
-Rscript $raiz'bin/R/gentree.R'
+Rscript $raiz'/bin/R/gentree.R'
 ## Modifique por las longitudes de caracteres a analizar
 size=(100 1000 10000)
 ## Modifique por el numero de replicas en la simulacion de caracteres
@@ -19,8 +19,8 @@ directorio=('farris/' 'felsenstein/' 'lb/' 'sb/')
 #: '
 for dic in ${directorio[*]}
 do
-  cd $raiz'data/raw/'$dic
-  if [ $raiz'data/raw/'$dic == $raiz'data/raw/felsenstein/' ]
+  cd $raiz'/data/raw/'$dic
+  if [ $raiz'/data/raw/'$dic == $raiz'/data/raw/felsenstein/' ]
   then
     for i in ${size[*]}
     do
@@ -32,7 +32,7 @@ do
         cat 'bayes_input/dna'$i'_'$replica'.nex' $raiz'bin/bash/bayes.nex' >> 'bayes_input/dna'$i'_'$replica'.nex'
       done
     done
-  elif [ $raiz'data/raw/'$dic == $raiz'data/raw/lb/' ]
+  elif [ $raiz'/data/raw/'$dic == $raiz'/data/raw/lb/' ]
   then
     for i in ${size[*]}
     do
@@ -44,7 +44,7 @@ do
         cat 'bayes_input/dna'$i'_'$replica'.nex' $raiz'bin/bash/bayes.nex' >> 'bayes_input/dna'$i'_'$replica'.nex'
       done
     done
-  elif [ $raiz'data/raw/'$dic == $raiz'data/raw/sb/' ]
+  elif [ $raiz'/data/raw/'$dic == $raiz'/data/raw/sb/' ]
   then
     for i in ${size[*]}
     do
@@ -56,7 +56,7 @@ do
         cat 'bayes_input/dna'$i'_'$replica'.nex' $raiz'bin/bash/bayes.nex' >> 'bayes_input/dna'$i'_'$replica'.nex'
       done
     done
-  elif [ $raiz'data/raw/'$dic == $raiz'data/raw/farris/' ]
+  elif [ $raiz'/data/raw/'$dic == $raiz'/data/raw/farris/' ]
   then
     for i in ${size[*]}
     do
@@ -72,17 +72,17 @@ do
 done
 
 #'
-#: '
+: '
 ## Mr Bayes corrida
 for dic in ${directorio[*]};
 do
-  cd $raiz'data/raw/'$dic'bayes_input'
+  cd $raiz'/data/raw/'$dic'bayes_input'
   #rm .nex.*
   for dato in $( ls )
   do
     mpirun -np '4' mb $dato
-    mv *.nex.* $raiz'data/processed/'$dic'bayes_output'
-    echo $dato
+    mv *.nex.* $raiz'/data/processed/'$dic'bayes_output'
+
   done
 done
-#'
+'
