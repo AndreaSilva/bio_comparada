@@ -1,6 +1,8 @@
 #!/bin/bash
 ## automatización de la creacion de datos a partir de arboles
-raiz='/home/eee/MEGAsync/bio_comparada/consistencia/'
+cd ../..
+raiz=$( pwd )
+echo 'Su directorio raiz es:' $raiz
 Rscript $raiz'bin/R/gentree.R'
 ## Modifique por las longitudes de caracteres a analizar
 size=(100 1000 10000)
@@ -70,17 +72,17 @@ do
 done
 
 #'
-: '
+#: '
 ## Mr Bayes corrida
 for dic in ${directorio[*]};
 do
-  cd $raiz'data/raw'$dic'bayes_input'
+  cd $raiz'data/raw/'$dic'bayes_input'
   #rm .nex.*
   for dato in $( ls )
   do
-    #mpirun -np '4' mb $dato
-    mv *.nex.* $raiz'data/processed'$dic'bayes_output'
+    mpirun -np '4' mb $dato
+    mv *.nex.* $raiz'data/processed/'$dic'bayes_output'
     echo $dato
   done
 done
-'
+#'
