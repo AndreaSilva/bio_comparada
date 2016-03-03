@@ -37,3 +37,5 @@ cd poy_5.1.1/src
 ./configure --enable-interface=flat --enable-mpi CC=mpicc --enable-long-sequences=Enable --enable-likelihood=Enable
 make
 make install
+cd ../..
+rm -rf poy_5.1.1
