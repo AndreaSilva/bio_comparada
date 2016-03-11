@@ -9,3 +9,4 @@ mkdir raw/farris/fasta raw/felsenstein/fasta raw/lb/fasta raw/sb/fasta
 mkdir raw/farris/bayes_input raw/felsenstein/bayes_input raw/lb/bayes_input raw/sb/bayes_input
 mkdir processed/farris/ processed/felsenstein/ processed/lb/ processed/sb/
 mkdir processed/farris/bayes_output processed/felsenstein/bayes_output processed/lb/bayes_output processed/sb/bayes_output
+mkdir processed/farris/phyml_output processed/felsenstein/phyml_output processed/lb/phyml_output processed/sb/phyml_output
