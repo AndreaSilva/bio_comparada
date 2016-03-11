@@ -96,3 +96,4 @@ do
     mpirun -np 4 phyml-mpi -i $dato -q -m GTR -v 0
     mv *_phyml* $raiz'/data/processed/'$dic'phyml_output'
   done
+done
