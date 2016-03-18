@@ -72,7 +72,7 @@ do
 done
 
 #'
-: '
+#: '
 ## Mr Bayes corrida
 for dic in ${directorio[*]};
 do
@@ -85,7 +85,7 @@ do
 
   done
 done
-'
+#'
 ## Phyml corrida
 for dic in ${directorio[*]};
 do
