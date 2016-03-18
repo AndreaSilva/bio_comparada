@@ -14,6 +14,9 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+# Cambie la dirección de raiz, al directorio que contiene la carpeta "bio_comparada"
+# No escriba el ultimo slash /
+raiz <- "~"
 
 ## Metricas de comparación
 library(phangorn)
@@ -21,8 +24,8 @@ library(ape)
 
 directorios <- c("farris/", "felsenstein/", "lb/", "sb/")
 subdirectorios <- c("bayes_output", "phyml_output")
-ruta <- "~/MEGAsync/bio_comparada/consistencia/data/processed/"
-ruta2<- "~/MEGAsync/bio_comparada/consistencia/data/raw/"
+ruta <- paste(raiz,"/bio_comparada/consistencia/data/processed/", sep = "")
+ruta2<- paste(raiz,"~/bio_comparada/consistencia/data/raw/", sep = "")
 
 ## Bayes
 nombres <- c("dna100_", "dna1000_", "dna10000_")
@@ -47,7 +50,7 @@ for(d in directorios){
   }
 } 
 recuperacion[,"seq_long"]<- rep(rep(c(100, 1000, 10000), each=25), times=4) 
-write.csv(recuperacion,file = "~/MEGAsync/bio_comparada/consistencia/data/processed/bayes_recuperation.csv")
+write.csv(recuperacion, file = paste(raiz,"/bio_comparada/consistencia/data/processed/bayes_recuperation.csv", sep = ""))
 
 ## ML
 
@@ -74,4 +77,4 @@ for(d in directorios){
 } 
 recuperacion[,"seq_long"]<- rep(rep(c(100, 1000, 10000), each=25), times=4) 
 View(recuperacion)
-write.csv(recuperacion,file = "~/MEGAsync/bio_comparada/consistencia/data/processed/ml_recuperation.csv")
+write.csv(recuperacion, file = paste(raiz,"/bio_comparada/consistencia/data/processed/ml_recuperation.csv", sep = ""))
