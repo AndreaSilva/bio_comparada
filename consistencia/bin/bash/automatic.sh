@@ -72,7 +72,7 @@ do
 done
 
 #'
-#: '
+: '
 ## Mr Bayes corrida
 for dic in ${directorio[*]};
 do
@@ -85,7 +85,7 @@ do
 
   done
 done
-#'
+'
 ## Phyml corrida
 for dic in ${directorio[*]};
 do
@@ -93,7 +93,7 @@ do
   #rm .nex.*
   for dato in $( ls )
   do
-    mpirun -np 4 phyml-mpi -i $dato -q -m GTR -v 0
+    mpirun -np 4 phyml-mpi -i $dato -q -m JC69 -v 0
     mv *_phyml* $raiz'/data/processed/'$dic'phyml_output'
   done
 done
