@@ -25,7 +25,7 @@ library(ape)
 directorios <- c("farris/", "felsenstein/", "lb/", "sb/")
 subdirectorios <- c("bayes_output", "phyml_output")
 ruta <- paste(raiz,"/bio_comparada/consistencia/data/processed/", sep = "")
-ruta2<- paste(raiz,"~/bio_comparada/consistencia/data/raw/", sep = "")
+ruta2<- paste(raiz,"/bio_comparada/consistencia/data/raw/", sep = "")
 
 ## Bayes
 nombres <- c("dna100_", "dna1000_", "dna10000_")
@@ -54,7 +54,7 @@ write.csv(recuperacion, file = paste(raiz,"/bio_comparada/consistencia/data/proc
 
 ## ML
 
-nombres <- c("dna100_", "dna1000_", "dna10000_")
+nombres <- c("dna100_", "dna1000_", "dna10000_", "dna20000_", "dna30000_" )
 replicas <- 1:25
 recuperacion <- data.frame()
 recuperacion
@@ -75,6 +75,5 @@ for(d in directorios){
     }
   }
 } 
-recuperacion[,"seq_long"]<- rep(rep(c(100, 1000, 10000), each=25), times=4) 
-View(recuperacion)
+#recuperacion[,"seq_long"]<- rep(rep(c(100, 1000, 10000), each=25), times=4) 
 write.csv(recuperacion, file = paste(raiz,"/bio_comparada/consistencia/data/processed/ml_recuperation.csv", sep = ""))
