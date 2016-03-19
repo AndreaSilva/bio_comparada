@@ -5,7 +5,7 @@ raiz=$( pwd )
 echo 'Su directorio raiz es:' $raiz
 Rscript $raiz'/bin/R/gentree.R'
 ## Modifique por las longitudes de caracteres a analizar
-size=(100 1000 10000)
+size=(100 1000 10000 20000 30000)
 ## Modifique por el numero de replicas en la simulacion de caracteres
 replicas=$(seq 25)
 ## Modifique el modelo a utilizar
