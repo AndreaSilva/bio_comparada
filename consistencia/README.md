@@ -1,4 +1,4 @@
-## Statistical Reconstruction ##
+## Statistical Consistency ##
 For replicate the analysis present in ... please follow the next steps:
 
 1. Download the repository [bio_comparada](https://github.com/dpabon/bio_comparada)
